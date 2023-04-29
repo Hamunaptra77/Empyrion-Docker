@@ -7,11 +7,11 @@ When running the image, mount the volume /home/user/Steam, to persist the Empyri
 Sample invocation:
 ```
 mkdir -p gamedir
-docker run -di -p 30000:30000/udp --restart unless-stopped -v $PWD/gamedir:/home/user/Steam bitr/empyrion-server
+docker run -di -p 30000:30004/udp --restart unless-stopped -v $PWD/gamedir:/home/user/Steam bitr/empyrion-server
 
 # for experimental version:
 mkdir -p gamedir_beta
-docker run -di -p 30000:30000/udp --restart unless-stopped -v $PWD/gamedir_beta:/home/user/Steam -e BETA=1 bitr/empyrion-server
+docker run -di -p 30000:30004/udp --restart unless-stopped -v $PWD/gamedir_beta:/home/user/Steam -e BETA=1 bitr/empyrion-server
 ```
 
 After starting the server, you can edit the dedicated.yaml file at 'gamedir/steamapps/common/Empyrion - Dedicated Server/dedicated.yaml'.
