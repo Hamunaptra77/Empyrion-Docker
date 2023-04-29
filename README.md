@@ -1,29 +1,31 @@
-# empyrion-server
-**Docker image for the [Empyrion](https://empyriongame.com/) dedicated server using WINE**
+# empyrion-server 
 
-The image itself contains WINE and steamcmd, along with an entrypoint.sh script that bootstraps the Empyrion dedicated server install via steamcmd.
-
-When running the image, mount the volume /home/user/Steam, to persist the Empyrion install and avoid downloading it on each container start.
-Sample invocation:
+**Docker-Image für den dedizierten Server [Empyrion](https://empyriongame.com/) mit WINE** 
+Das Image selbst enthält WINE und steamcmd sowie ein entrypoint.sh-Skript, das die Installation des dedizierten Empyrion-Servers 
+über steamcmd startet. Wenn Sie das Image ausführen, mounten Sie das Volume /home/user/Steam, 
+um die Empyrion-Installation beizubehalten und zu vermeiden, dass sie bei jedem Containerstart heruntergeladen wird. 
+Beispiel für einen Aufruf:
 ```
 mkdir -p gamedir
-docker run -di -p 30000:30004/udp --restart unless-stopped -v $PWD/gamedir:/home/user/Steam bitr/empyrion-server
+docker run -di -p 30000:30000/udp -p 30001:30001/udp -p 30002:30002/udp -p 30003:30003/udp --restart unless-stopped -v $PWD/gamedir:/home/user/Steam bitr/empyrion-server
 
-# for experimental version:
+# Für die experimentelle Version:
 mkdir -p gamedir_beta
-docker run -di -p 30000:30004/udp --restart unless-stopped -v $PWD/gamedir_beta:/home/user/Steam -e BETA=1 bitr/empyrion-server
+docker run -di -p 30000:30000/udp -p 30001:30001/udp -p 30002:30002/udp -p 30003:30003/udp --restart unless-stopped -v $PWD/gamedir_beta:/home/user/Steam -e BETA=1 bitr/empyrion-server
 ```
 
-After starting the server, you can edit the dedicated.yaml file at 'gamedir/steamapps/common/Empyrion - Dedicated Server/dedicated.yaml'.
-You'll need to restart the docker container after editing.
+Nach dem Start des Servers können Sie die Datei dedicated.yaml unter 'gamedir/steamapps/common/Empyrion - Dedicated Server/dedicated.yaml' bearbeiten. Sie müssen den Docker-Container nach der Bearbeitung neu starten.
 
-The DedicatedServer folder has been symlinked to /server, so that you can refer to saves with z:/server/Saves (for instance the save called The\_Game):
+Der Ordner DedicatedServer wurde symbolisch mit /server verknüpft, so dass Sie mit z:/server/Saves auf Speicherungen verweisen können 
+(z. B. den Speicherplatz The\_Game):
 ```
 # cp -r /..../Saves/Games/The_Game 'gamedir/steamapps/common/Empyrion - Dedicated Server/Saves/Games/'
 # you might want a symlink for games: ln -s 'gamedir/steamapps/common/Empyrion - Dedicated Server/Saves/Games'
 docker run -di -p 30000:30000/udp --restart unless-stopped -v $PWD/gamedir:/home/user/Steam bitr/empyrion-server -dedicated 'z:/server/Saves/Games/The_Game/dedicated.yaml'
 ```
 
-To append arguments to the steamcmd command, use `-e "STEAMCMD=..."`. Example: `-e "STEAMCMD=+runscript /home/user/Steam/addmods.txt"`.
+Um Argumente an den Befehl steamcmd anzuhängen, verwenden Sie '-e "STEAMCMD=..."'. Beispiel: '-e "STEAMCMD=+runscript /home/user/Steam/addmods.txt"'.
 
-For more information about the dedicated server itself, refer to the [wiki](https://empyrion.gamepedia.com/Dedicated_Server_Setup).
+Weitere Informationen über den dedizierten Server selbst finden Sie im [wiki](https://empyrion.gamepedia.com/Dedicated_Server_Setup).
+
+TestServer IP 82.165.116.241
