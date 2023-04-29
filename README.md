@@ -1,4 +1,4 @@
-# empyrion-server 
+# Ubuntu 22.04.2 LTS empyrion-server 
 
 **Docker-Image für den dedizierten Server [Empyrion](https://empyriongame.com/) mit WINE** 
 Das Image selbst enthält WINE und steamcmd sowie ein entrypoint.sh-Skript, das die Installation des dedizierten Empyrion-Servers 
