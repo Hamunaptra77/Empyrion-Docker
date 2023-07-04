@@ -28,4 +28,4 @@ Um Argumente an den Befehl steamcmd anzuhängen, verwenden Sie '-e "STEAMCMD=...
 
 Weitere Informationen über den dedizierten Server selbst finden Sie im [wiki](https://empyrion.gamepedia.com/Dedicated_Server_Setup).
 
-TestServer IP 82.165.116.241
+TestServer IP 82.165.110.152
